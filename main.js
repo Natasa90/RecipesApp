@@ -68,17 +68,39 @@ button.addEventListener('click', () => {
     let foundRecipes = []; 
     
     recipes.forEach(recipe => {
+        let found = false;
+
         recipe.ingredients.forEach(ingredient => {
             const filterIngredient = ingredient.trim().toLowerCase(); 
             if (searchRecipe === filterIngredient) {
                 foundRecipes.push(recipe); 
-            } else {
-                displaySearchResult.innerHTML = "No recipes found."
-            };
+                found = true;
+            }
         });
+        if (found) { 
+            displaySearchResult.innerHTML = "";
+        }
     });
 
-    foundRecipes.forEach(recipe => { 
-        displaySearchResult.innerHTML = `${recipe.title}`;
-    })
+    if (foundRecipes.length === 0) {
+        displaySearchResult.innerHTML = "No recipes found."
+    } else { 
+        foundRecipes.forEach(recipe => { 
+        const listItem = document.createElement("li");
+        listItem.className = "listItem"
+        listItem.innerHTML += `
+        <h3>${recipe.title}</h3>
+        <img src="${recipe.image}" width=50% alt="${recipe.title}">
+        <p>Ingredients: ${recipe.ingredients}</p>
+        <p>${recipe.instructions}</p>
+        `;
+        displaySearchResult.appendChild(listItem);
+        
+        /*const detailsButton = document.createElement("button"); 
+        detailsButton.textContent = "view details"; 
+        document.getElementById("search").appendChild(detailsButton); NOT WOOOORKINGGGGG :( */
+    });
+    };
 });
+
+

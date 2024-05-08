@@ -40,22 +40,20 @@ main {
     padding: 0;
     color:black; /*#f0f0f0*/
 }
+.listItem{
+    text-align: center;
+}
+.listItem p{
+    text-align: start;
+}
 
 #searchResults li {
     padding: 10px;
     border-bottom: 1px solid #ccc;
-    color:#f0f0f0;
+    color: black;
 }
 
-#recipeDetails {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    color:#f0f0f0;
-}
-
-#recipeDetails.hidden {
+.hidden {
     display: none;
     color:#f0f0f0;
 }
