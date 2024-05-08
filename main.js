@@ -93,6 +93,7 @@ button.addEventListener('click', () => {
         <img src="${recipe.image}" width=50% alt="${recipe.title}">
         <p>Ingredients: ${recipe.ingredients}</p>
         <p>${recipe.instructions}</p>
+        <button onClick="addToFavourites()">Add to favourites <i class="fa-regular fa-heart"></i></button>
         `;
         displaySearchResult.appendChild(listItem);
         
