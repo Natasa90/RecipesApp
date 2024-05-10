@@ -98,9 +98,9 @@ function addToFavorites(recipeId) {
     const clonedRecipe = document.createElement('div');
     clonedRecipe.className = "cloned";
     clonedRecipe.innerHTML = `
-        <p>Saved recipes:</p>
         <h3>${recipe.title}</h3>
         `
     ;
+    favoriteRecipesList.innerHTML = "Saved recipes:"; 
     favoriteRecipesList.appendChild(clonedRecipe);
 }
