@@ -50,16 +50,6 @@ const recipes = [
     }
 ];
 
-
-const searchRecipe = document.getElementById("searchInput");
-const displaySearchResult = document.getElementById("searchResults");
-const recipeDetails = document.getElementById("recipeDetails"); 
-const recipeTitle = document.getElementById('recipeTitle');
-const recipeImage = document.getElementById('recipeImage');
-const recipeIngredients = document.getElementById('recipeIngredients');
-const recipeInstructions = document.getElementById('recipeInstructions');
-const saveRecipeBtn = document.getElementById('saveRecipe');
-
 const button = document.getElementById("submit"); 
 
 button.addEventListener('click', () => {
@@ -86,22 +76,31 @@ button.addEventListener('click', () => {
         displaySearchResult.innerHTML = "No recipes found."
     } else { 
         foundRecipes.forEach(recipe => { 
-        const listItem = document.createElement("li");
+        const listItem = document.createElement("div");
         listItem.className = "listItem"
         listItem.innerHTML += `
         <h3>${recipe.title}</h3>
         <img src="${recipe.image}" width=50% alt="${recipe.title}">
-        <p>Ingredients: ${recipe.ingredients}</p>
-        <p>${recipe.instructions}</p>
-        <button onClick="addToFavourites()">Add to favourites <i class="fa-regular fa-heart"></i></button>
+        <p><strong>Ingredients:</strong> ${recipe.ingredients}.</p>
+        <p><strong>Instructions:</strong>${recipe.instructions}</p>
+        <button onClick="addToFavorites(${recipe.id})">Add to favourites <i class="fa-regular fa-heart"></i></button>
         `;
         displaySearchResult.appendChild(listItem);
-        
-        /*const detailsButton = document.createElement("button"); 
-        detailsButton.textContent = "view details"; 
-        document.getElementById("search").appendChild(detailsButton); NOT WOOOORKINGGGGG :( */
     });
     };
 });
 
+function addToFavorites(recipeId) {
+    const recipe = recipes.find(recipe => recipe.id === recipeId);
+    if (!recipe) return;
 
+    const favoriteRecipesList = document.getElementById('favorites');
+    const clonedRecipe = document.createElement('div');
+    clonedRecipe.className = "cloned";
+    clonedRecipe.innerHTML = `
+        <p>Saved recipes:</p>
+        <h3>${recipe.title}</h3>
+        `
+    ;
+    favoriteRecipesList.appendChild(clonedRecipe);
+}

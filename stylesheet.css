@@ -37,22 +37,17 @@ main {
 
 #searchResults {
     list-style-type: none;
-    padding: 0;
+    padding: 10px;
     color:black; /*#f0f0f0*/
 }
 .listItem{
     text-align: center;
+    border-bottom: 1px solid #ccc;
+    padding: 2rem 0;
 }
 .listItem p{
     text-align: start;
 }
-
-#searchResults li {
-    padding: 10px;
-    border-bottom: 1px solid #ccc;
-    color: black;
-}
-
 .hidden {
     display: none;
     color:#f0f0f0;
@@ -63,16 +58,6 @@ main {
     height: auto;
     margin-bottom: 20px;
 }
-
-#saveRecipe {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    margin-top: 20px;
-}
-
 footer {
     position: sticky;
     background-color:#333;
