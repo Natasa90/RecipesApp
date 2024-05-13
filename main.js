@@ -54,9 +54,17 @@ function displayAllRecipeTitles() {
     document.getElementById("favorites").classList.add("hidden");
     const recipeTitlesContainer = document.getElementById("recipesShown");
     recipes.forEach(recipe => {
-        const titleItem = document.createElement("p");
-        titleItem.textContent = recipe.title;
-        recipeTitlesContainer.appendChild(titleItem);
+        const fullRecipe = document.createElement("div");
+        fullRecipe.className = "listItem"
+        fullRecipe.innerHTML += `
+        <h3>${recipe.title}</h3>
+        <img src="${recipe.image}" width=50% alt="${recipe.title}">
+        <p><strong>Ingredients:</strong> ${recipe.ingredients}.</p>
+        <p><strong>Instructions:</strong>${recipe.instructions}</p>
+        <button onClick="addToFavorites(${recipe.id})">Add to favourites <i class="fa-regular fa-heart"></i></button>
+        `;
+
+        recipeTitlesContainer.appendChild(fullRecipe);
     });
 }
 
@@ -69,6 +77,7 @@ button.addEventListener('click', () => {
     const searchRecipe = document.getElementById("searchInput").value.trim().toLowerCase();
     const displaySearchResult = document.getElementById("searchResults");
     let foundRecipes = []; 
+    let foundTitles = []; 
  
     
     recipes.forEach(recipe => {
@@ -115,8 +124,8 @@ function addToFavorites(recipeId) {
     const clonedRecipe = document.createElement('div')
     clonedRecipe.className = "cloned";
     clonedRecipe.innerHTML = `
-        <h3>${recipe.title}</h3>`
-        ;
+        <a href=""><i>${recipe.title} <i class="fas fa-angle-double-right"></i></i></a>
+        `;
     favoriteRecipesList.appendChild(clonedRecipe);
 
     favoriteRecipeIds.add(recipeId);

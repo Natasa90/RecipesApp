@@ -44,7 +44,7 @@ main {
 .listItem{
     text-align: center;
     border-bottom: 1px solid #ccc;
-    padding: 2rem 0;
+    padding: 2rem 1.5rem;
 }
 .listItem p{
     text-align: start;
@@ -58,6 +58,27 @@ main {
     height: auto;
     margin-bottom: 20px;
 }
+#favorites{ 
+    margin: 1.8rem;
+}
+#favorites p{
+    font-weight: 900;
+    font-size: 1.2rem;
+}
+.cloned { 
+    padding: 0.5rem;
+}
+.cloned a{
+    text-decoration: none;
+    color: black;
+}
+.listItem img{ 
+    padding-bottom: 1rem;
+}
+.listItem button{ 
+    margin-top: 0.5rem;
+}
+
 footer {
     position: sticky;
     background-color:#333;
