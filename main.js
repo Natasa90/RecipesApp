@@ -50,12 +50,26 @@ const recipes = [
     }
 ];
 
+function displayAllRecipeTitles() {
+    document.getElementById("favorites").classList.add("hidden");
+    const recipeTitlesContainer = document.getElementById("recipesShown");
+    recipes.forEach(recipe => {
+        const titleItem = document.createElement("p");
+        titleItem.textContent = recipe.title;
+        recipeTitlesContainer.appendChild(titleItem);
+    });
+}
+
+document.addEventListener("DOMContentLoaded", displayAllRecipeTitles());
+
 const button = document.getElementById("submit"); 
 
 button.addEventListener('click', () => {
+    document.getElementById("recipesShown").classList.add("hidden");
     const searchRecipe = document.getElementById("searchInput").value.trim().toLowerCase();
     const displaySearchResult = document.getElementById("searchResults");
     let foundRecipes = []; 
+ 
     
     recipes.forEach(recipe => {
         let found = false;
@@ -90,17 +104,20 @@ button.addEventListener('click', () => {
     };
 });
 
+const favoriteRecipeIds = new Set();
+
 function addToFavorites(recipeId) {
+    document.getElementById("favorites").classList.remove("hidden");
     const recipe = recipes.find(recipe => recipe.id === recipeId);
-    if (!recipe) return;
+    if (!recipe || favoriteRecipeIds.has(recipeId)) return;
 
     const favoriteRecipesList = document.getElementById('favorites');
-    const clonedRecipe = document.createElement('div');
+    const clonedRecipe = document.createElement('div')
     clonedRecipe.className = "cloned";
     clonedRecipe.innerHTML = `
-        <h3>${recipe.title}</h3>
-        `
-    ;
-    favoriteRecipesList.innerHTML = "Saved recipes:"; 
+        <h3>${recipe.title}</h3>`
+        ;
     favoriteRecipesList.appendChild(clonedRecipe);
+
+    favoriteRecipeIds.add(recipeId);
 }
